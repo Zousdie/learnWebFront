@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        body * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg1 {
+            background-color: #ff0000;
+            border: 10px solid #000000;
+            position: relative;
+            width: 60%;
+            margin: auto;
+        }
+
+        .bg2 {
+            background-color: #0000ff;
+            border: 10px solid rgb(255, 255, 0);
+            position: absolute;
+            top: 20px;
+            right: 0px;
+            /* left: 0px; */
+            width: 100%;
+            color: white
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg1">
+        <p>Posotion: static, relative, absolute, fixed</p>
+        <div class="bg2">
+            <p>绝对定位依据 “最近的” “已定位的” 父元素的位置，可用relative元素做absolute元素的 “容器”</p>
+        </div>
+    </div>
+</body>
+
+</html>

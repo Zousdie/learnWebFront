@@ -1,2 +1,2 @@
 # learnWebFront
-Web front. Learn and accumulate.
+Learn and accumulate.
