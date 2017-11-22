@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			// function F() {};
+			// F.prototype.name = 'F';
+
+			// var f1 = new F();
+
+			// F.prototype = {
+			// 	constructor: F,
+			// 	name: 'FFFFFF'
+			// }
+			
+			// //注意原型的指针指向变化
+			// console.log(f1.name);  //"F"
+
+			/******************************************/
+
+			// function Super() {
+			// 	this.supername = 'Super';
+			// }
+			// Super.prototype.getSuperName = function() {
+			// 	return this.supername;
+			// }
+
+			// function Sub() {
+			// 	this.subname = 'Sub';
+			// }
+			// Sub.prototype = new Super();
+			// Sub.prototype.getSubName = function() {
+			// 	return this.subname;
+			// }
+
+			// var o = new Sub();
+			// console.log(o.getSuperName());  //"Super"
+			// console.log(o.getSubName());    //"Sub"
+			
+			/******************************************/
+
+			// function F(name) {
+			// 	var o = new Object();
+			// 	o.name = name;
+			// 	o.sayName = function() {
+			// 		console.log(name);
+			// 	}
+			// 	return o;
+			// }
+
+			// var f1 = F('f1');
+
+			// f1.sayName();     //"f1"
+			// f1.name = 'fff';
+			// f1.sayName();     //"f1"
+			
+			/*******************************************/
+			// f();	//"1"
+			// var f = function() {
+			// 	console.log(0);
+			// };
+
+			// f();	//"0"
+
+			// function f() {
+			// 	console.log(1);
+			// }
+			// f();	//"0"
+			'use strict';
+
+			class Animal {
+			    constructor(name) {
+			        this.name = name;
+			    }
+			}
+			class Cat extends Animal {
+			    constructor(name) {
+			        super(name);
+			    }
+			    
+			    say() {
+			        return "Hello, " + this.name;
+			    }
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
