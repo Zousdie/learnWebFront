@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        body * {
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            margin: 1rem;
+        }
+
+        p {
+            margin: 1rem;
+        }
+
+        ul {
+            margin: 1rem;
+            list-style-type: none;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.712);
+            display: inline-block;
+            width: 60px;
+            padding: 5px 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        ul li a:hover {
+            color: #ff0000;
+            background-color: #000000;
+        }
+
+        ul.nav-horizontal {
+            font-size: 0;
+        }
+
+        ul.nav-horizontal li {
+            display: inline-block;
+        }
+
+        ul.nav-horizontal li a {
+            font-size: 1rem;
+        }
+
+        ul.nav-vertical li {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>nav-horizontal</h1>
+    <p>使用内联块，消除空隙</p>
+    <ul class='nav-horizontal'>
+        <li>
+            <a href="#home">Home</a>
+        </li>
+        <li>
+            <a href="#news">News</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+        <li>
+            <a href="#about">About</a>
+        </li>
+    </ul>
+
+    <h1>nav-horizontal</h1>
+    <p>使用内联块，<b>有空隙</b></p>
+    <ul class='nav-horizontal' style='font-size:1rem'>
+        <li>
+            <a href="#home">Home</a>
+        </li>
+        <li>
+            <a href="#news">News</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+        <li>
+            <a href="#about">About</a>
+        </li>
+    </ul>
+
+    <h1>nav-vertical</h1>
+    <ul class='nav-vertical'>
+        <li>
+            <a href="#home">Home</a>
+        </li>
+        <li>
+            <a href="#news">News</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+        <li>
+            <a href="#about">About</a>
+        </li>
+    </ul>
+    <p>注意1：使用inline-block, float样式创建水平导航栏</p>
+    <p>注意2：inline-block元素之间默认有空白</p>
+    <p>注意3：使用float注意消除浮动</p>
+</body>
+
+</html>

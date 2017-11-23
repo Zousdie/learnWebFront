@@ -23,7 +23,7 @@
             margin-top: 15px;
         }
 
-        .div-float * {
+        .div-float p {
             float: left;
             border: 1px solid #00FF00;
         }
@@ -34,13 +34,12 @@
         }
 
         .div-float::after {
-
             content: "this is a pseudo-element '::after', and it can clear float";
+            display: block;
+            clear: both;
             /* height: 0; */
             /* line-height: 0; */
-            display: block;
             /* visibility: hidden; */
-            clear: both;
         }
 
         div:first-child p:first-child {
