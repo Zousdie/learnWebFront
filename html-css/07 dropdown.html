@@ -9,14 +9,29 @@
     <title>Document</title>
 
     <style>
+        div.dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        div.dropdown:hover .dropdown-list {
+            display: block;
+        }
+
+        div.dropdown .dropdown-list {
+            display: none;
+            overflow: auto;
+        }
+
         ul {
             list-style-type: none;
+            margin: 0 0 0 1rem;
         }
-        
+
         ul li {
             display: block;
         }
-        
+
         ul li a {
             text-decoration: none;
             color: #ffffff;
@@ -27,7 +42,7 @@
             text-align: center;
             vertical-align: middle;
         }
-        
+
         ul li a:hover {
             color: #ff0000;
             background-color: #000000;
@@ -37,9 +52,9 @@
 
 <body>
     <h1>dropdown by css</h1>
-    <div>
+    <div class='dropdown'>
         <span>DropDown</span>
-        <ul>
+        <ul class='dropdown-list'>
             <li>
                 <a href="#home">Home</a>
             </li>
