@@ -9,40 +9,60 @@
     <title>Document</title>
 
     <style>
+        div.container {
+            width: 60%;
+            margin: auto;
+        }
+        
         div.dropdown {
             display: inline-block;
             position: relative;
         }
-
+        
         div.dropdown:hover .dropdown-list {
             display: block;
         }
-
+        
         div.dropdown .dropdown-list {
             display: none;
             overflow: auto;
+            position: absolute;
+            z-index: 1;
         }
-
+        
+        div.div-br {
+            display: inline;
+        }
+        
+        div.div-br::before {
+            content: '\A'
+        }
+        
+        div.div-br::before,
+        div.div-br::after {
+            white-space: pre-line;
+        }
+        
         ul {
             list-style-type: none;
             margin: 0 0 0 1rem;
         }
-
+        
         ul li {
             display: block;
         }
-
+        
         ul li a {
             text-decoration: none;
             color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.712);
+            background-color: rgb(92, 92, 92);
             display: inline-block;
             width: 60px;
             padding: 5px 10px;
             text-align: center;
             vertical-align: middle;
         }
-
+        
         ul li a:hover {
             color: #ff0000;
             background-color: #000000;
@@ -51,23 +71,36 @@
 </head>
 
 <body>
-    <h1>dropdown by css</h1>
-    <div class='dropdown'>
-        <span>DropDown</span>
-        <ul class='dropdown-list'>
-            <li>
-                <a href="#home">Home</a>
-            </li>
-            <li>
-                <a href="#news">News</a>
-            </li>
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-            <li>
-                <a href="#about">About</a>
-            </li>
-        </ul>
+    <div class='container'>
+        <h1>dropdown by css</h1>
+        <div class='dropdown'>
+            <span>DropDown</span>
+            <ul class='dropdown-list'>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#news">News</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+                <li>
+                    <a href="#about">About</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>hover it</p>
+            <p>绝对定位不影响文档流元素的排列，可以重合覆盖</p>
+        </div>
+    </div>
+    <div>
+        123123<br>12312
+    </div>
+    <div>
+        123123
+        <div class='div-br'></div>12312
     </div>
 </body>
 
