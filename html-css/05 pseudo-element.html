@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
@@ -11,28 +11,28 @@
             margin: 0;
             padding: 0;
         }
-
+        
         div {
             width: 60%;
             margin: auto;
             border: 10px solid #000000;
             padding: 10px;
         }
-
+        
         div+div {
             margin-top: 15px;
         }
-
+        
         .div-float p {
             float: left;
             border: 1px solid #00FF00;
         }
-
+        
         .div-float::before {
             content: "this is a pseudo-element '::before'";
             display: block;
         }
-
+        
         .div-float::after {
             content: "this is a pseudo-element '::after', and it can clear float";
             display: block;
@@ -41,15 +41,15 @@
             /* line-height: 0; */
             /* visibility: hidden; */
         }
-
+        
         div:first-child p:first-child {
             font-style: italic;
         }
-
+        
         div:first-child p::first-line {
             color: #FF0000;
         }
-
+        
         div:first-child p::first-letter {
             color: #0000FF;
             font-style: normal;
@@ -62,17 +62,13 @@
 
 <body>
     <div>
-        <p>You can use the :first-line pseudo-element to add a special effect to the first line of a text. You can use the :first-linepseudo-element
-            to add a special effect to the first line of a text. You can use the :first-line pseudo-elementto add a special
-            effect to the first line of a text. You can use the :first-line pseudo-element to add a special effect to the
-            first line of a text.
+        <p>You can use the :first-line pseudo-element to add a special effect to the first line of a text. You can use the :first-linepseudo-element to add a special effect to the first line of a text. You can use the :first-line pseudo-elementto add a special
+            effect to the first line of a text. You can use the :first-line pseudo-element to add a special effect to the first line of a text.
         </p>
         <br>
         <p>
-            You can use the :first-line pseudo-element to add a special effect to the first line of a text. You can use the :first-line
-            pseudo-element to add a special effect to the first line of a text. You can use the :first-line pseudo-element
-            to add a special effect to the first line of a text. You can use the :first-line pseudo-element to add a special
-            effect to the first line of a text.
+            You can use the :first-line pseudo-element to add a special effect to the first line of a text. You can use the :first-line pseudo-element to add a special effect to the first line of a text. You can use the :first-line pseudo-element to add a special
+            effect to the first line of a text. You can use the :first-line pseudo-element to add a special effect to the first line of a text.
         </p>
     </div>
     <div class='div-float'>

@@ -7,10 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body,
-        body * {
+        * {
             margin: 0;
             padding: 0;
+        }
+        
+        body>div+div {
+            margin-top: 30px;
         }
         
         .bg1 {
@@ -24,38 +27,56 @@
         .bg2 {
             background-color: #0000ff;
             border: 10px solid rgb(255, 255, 0);
+            color: white;
             position: absolute;
-            top: 20px;
-            right: 0px;
-            /* left: 0px; */
+            left: 10px;
+            right: 10px;
             width: 100%;
-            color: white
         }
         
         div.border {
             border: 1px solid #000000;
+        }
+        
+        #rel1 {
+            position: relative;
+            width: 120px;
+            height: 50px;
+            background-color: yellow;
+        }
+        
+        #abs1 {
+            position: absolute;
+            top: 0;
+            left: -15px
+        }
+        
+        #box1 {
+            width: 50px;
+            height: 50px;
+            background-color: red
+        }
+        
+        #box2 {
+            width: 50px;
+            height: 50px;
+            background-color: blue
         }
     </style>
 </head>
 
 <body>
     <div class="bg1">
-        <p>Posotion: static, relative, absolute, fixed</p>
+        <p style='line-height:36px'>Posotion: static, relative, absolute, fixed</p>
         <div class="bg2">
-            <p>绝对定位依据 “最近的” “已定位的” 父元素的位置，可用relative元素做absolute元素的 “容器”</p>
+            <p>1. 绝对定位依据 “最近的” “已定位的” 父元素的位置，可用relative元素做absolute元素的 “容器”</p>
+            <p>2. 设置边框时，由于元素宽度变化，出现“边框交错”现象</p>
         </div>
     </div>
-    <div style='position:relative' class='border'>
-        <div style='position:absolute' class='border'>
-            <div style='display:inline-block' class='border'>
-                <p>123</p>
-            </div>
-            <div style='display:inline-block' class='border'>
-                <p>123</p>
-            </div>
-            <div style='display:inline-block' class='border'>
-                <p>123</p>
-            </div>
+    <div id='rel1'>
+        <div id='abs1'>
+            <div id='box1'></div>
+            <div id='box2'></div>
         </div>
     </div>
 </body>

@@ -7,22 +7,49 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .border1 {
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
             background-color: transparent;
+            width: 0px;
+            height: 0px;
+        }
+        
+        body>div+div {
+            margin-top: 10px;
+        }
+        
+        .border1 {
             border-left: 10px solid rgb(255, 0, 0);
             border-top: 10px solid transparent;
             border-right: 10px solid transparent;
             border-bottom: 10px solid transparent;
-            width: 0px;
-            height: 0px;
-            padding: 0px;
-            margin-top: 10px;
+        }
+        
+        .border2 {
+            border: 10px solid #FF0000;
+        }
+        
+        .border3 {
+            border-top-width: 10px;
+            border-top-style: outset;
+            border-top-color: #00FF00;
+        }
+        
+        .border4 {
+            border: 2px solid;
+            border-radius: 25px / 10px;
         }
     </style>
 </head>
 
 <body>
     <div class='border1'></div>
+    <div class='border2'></div>
+    <div class='border3' style='width:100px;height:100px;background-color:blue'></div>
 </body>
 
 </html>
