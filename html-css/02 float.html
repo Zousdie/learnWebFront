@@ -44,6 +44,27 @@
             margin-left: auto;
             margin-right: auto;
         }
+        
+        div.container::after,
+        div.container::before {
+            content: " ";
+            display: table;
+        }
+        
+        div.container::after {
+            clear: both;
+        }
+        
+        div.container-justify {
+            display: table;
+        }
+        
+        div.container-justify>div {
+            display: table-cell;
+            text-align: center;
+            float: none;
+            /*width: 1%;*/
+        }
     </style>
 </head>
 
@@ -100,9 +121,18 @@
             vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae hic ut ab perferendis sit
             quod architecto, dolor debitis quam rem provident aspernatur tempora expedita perspiciatis suscipit ipsam voluptas tenetur. Nostrum? Quae hic ut ab perferendis sit quod architecto. Quae hic ut ab perferendis sit quod architecto.</p>
     </div>
+
     <div class='container'>
+        <div class='container-justify'>
+            <div>12331</div>
+            <div>1231</div>
+            <div>123</div>
+            <div>123111111</div>
+        </div>
+    </div>
+
+    <div class='container' style='display:none'>
         <img src="" width="200px" height="200px" style='float:left;' />
-        <img src="" width="40px" height="40px" /><img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
@@ -131,7 +161,6 @@
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
-        <img src="" width="40px" height="40px" /><img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
@@ -160,7 +189,10 @@
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
-        <img src="" width="40px" height="40px" /><img src="" width="40px" height="40px" />
+        <img src="" width="40px" height="40px" />
+        <img src="" width="40px" height="40px" />
+        <img src="" width="40px" height="40px" />
+        <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
         <img src="" width="40px" height="40px" />
