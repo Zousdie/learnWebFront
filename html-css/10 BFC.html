@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        
+        .div1 {
+            margin: auto;
+            width: 60%;
+            overflow: hidden;
+            /* 建立BFC */
+        }
+        
+        .div2 {
+            margin: 20px 0;
+            background-color: #00ff00;
+        }
+        
+        .newBFC {
+            overflow: hidden;
+            /* 建立BFC */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='div1'>
+        <div class='div2'>123</div>
+        <div class='newBFC'>
+            <div class='div2'>注意外边距堆叠</div>
+        </div>
+    </div>
+</body>
+
+</html>
