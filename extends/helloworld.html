@@ -1,87 +1,91 @@
 <html>
-	<head>
-		<script type="text/javascript">
-			// function F() {};
-			// F.prototype.name = 'F';
 
-			// var f1 = new F();
+<head>
+    <script type="text/javascript">
+        // function F() {};
+        // F.prototype.name = 'F';
 
-			// F.prototype = {
-			// 	constructor: F,
-			// 	name: 'FFFFFF'
-			// }
-			
-			// //注意原型的指针指向变化
-			// console.log(f1.name);  //"F"
+        // var f1 = new F();
 
-			/******************************************/
+        // F.prototype = {
+        // 	constructor: F,
+        // 	name: 'FFFFFF'
+        // }
 
-			// function Super() {
-			// 	this.supername = 'Super';
-			// }
-			// Super.prototype.getSuperName = function() {
-			// 	return this.supername;
-			// }
+        // //注意原型的指针指向变化
+        // console.log(f1.name);  //"F"
 
-			// function Sub() {
-			// 	this.subname = 'Sub';
-			// }
-			// Sub.prototype = new Super();
-			// Sub.prototype.getSubName = function() {
-			// 	return this.subname;
-			// }
+        /******************************************/
 
-			// var o = new Sub();
-			// console.log(o.getSuperName());  //"Super"
-			// console.log(o.getSubName());    //"Sub"
-			
-			/******************************************/
+        // function Super() {
+        // 	this.supername = 'Super';
+        // }
+        // Super.prototype.getSuperName = function() {
+        // 	return this.supername;
+        // }
 
-			// function F(name) {
-			// 	var o = new Object();
-			// 	o.name = name;
-			// 	o.sayName = function() {
-			// 		console.log(name);
-			// 	}
-			// 	return o;
-			// }
+        // function Sub() {
+        // 	this.subname = 'Sub';
+        // }
+        // Sub.prototype = new Super();
+        // Sub.prototype.getSubName = function() {
+        // 	return this.subname;
+        // }
 
-			// var f1 = F('f1');
+        // var o = new Sub();
+        // console.log(o.getSuperName());  //"Super"
+        // console.log(o.getSubName());    //"Sub"
 
-			// f1.sayName();     //"f1"
-			// f1.name = 'fff';
-			// f1.sayName();     //"f1"
-			
-			/*******************************************/
-			// f();	//"1"
-			// var f = function() {
-			// 	console.log(0);
-			// };
+        /******************************************/
 
-			// f();	//"0"
+        // function F(name) {
+        // 	var o = new Object();
+        // 	o.name = name;
+        // 	o.sayName = function() {
+        // 		console.log(name);
+        // 	}
+        // 	return o;
+        // }
 
-			// function f() {
-			// 	console.log(1);
-			// }
-			// f();	//"0"
-			'use strict';
+        // var f1 = F('f1');
 
-			class Animal {
-			    constructor(name) {
-			        this.name = name;
-			    }
-			}
-			class Cat extends Animal {
-			    constructor(name) {
-			        super(name);
-			    }
-			    
-			    say() {
-			        return "Hello, " + this.name;
-			    }
-			}
-		</script>
-	</head>
-	<body>
-	</body>
+        // f1.sayName();     //"f1"
+        // f1.name = 'fff';
+        // f1.sayName();     //"f1"
+
+        /*******************************************/
+        // f();	//"1"
+        // var f = function() {
+        // 	console.log(0);
+        // };
+
+        // f();	//"0"
+
+        // function f() {
+        // 	console.log(1);
+        // }
+        // f();	//"0"
+        'use strict';
+
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+        }
+        class Cat extends Animal {
+            constructor(name) {
+                super(name);
+            }
+
+            say() {
+                return "Hello, " + this.name;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+</body>
+
 </html>
