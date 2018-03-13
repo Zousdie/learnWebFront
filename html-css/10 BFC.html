@@ -10,33 +10,104 @@
         * {
             margin: 0;
         }
-        
-        .div1 {
+
+        body {
+            margin-bottom: 10px;
+        }
+
+        .container {
             margin: auto;
             width: 60%;
-            overflow: hidden;
-            /* 建立BFC */
+            border: #0f2923 solid 1px
         }
-        
-        .div2 {
-            margin: 20px 0;
+
+        .box {
+            margin: 10px 0;
             background-color: #00ff00;
         }
-        
-        .newBFC {
-            overflow: hidden;
-            /* 建立BFC */
-            margin-top: 10px;
+
+        .fl {
+            float: left;
         }
+
+        .fr {
+            float: right;
+        }
+
+        .newBFC {
+            /* 建立了BFC */
+            overflow: hidden;
+        }
+
+        .col {
+            width: 31.33%;
+            height: 60px;
+            background-color: #00ff00;
+            float: left;
+            margin: 0 1%;
+        }
+
+        .col:last-child {
+            float: none;
+            overflow: hidden;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class='div1'>
-        <div class='div2'>123</div>
-        <div class='newBFC'>
-            <div class='div2'>注意外边距堆叠</div>
+    <div class="container newBFC">
+        <h1>BFC中盒子对齐</h1>
+        <div style="background-color:#00ff00;height:100px;"></div>
+        <div style="background-color:#7700ff;height:100px;width:80%"></div>
+        <div style="background-color:#ff000d;height:100px;"></div>
+        <div style="background-color:#00ffc8;height:100px;width:60%">
+            <div style="background-color:#0f2923;height:50px;width:20%;float:left;"></div>
         </div>
+    </div>
+
+    <div class="container newBFC">
+        <h1>BFC导致的外边距折叠</h1>
+        <div class="box">这是一个div</div>
+        <div class="box">注意外边距堆叠</div>
+        <div class="box">理论上两个兄弟元素之间的边距是两个元素的边距之和（20px），但它实际上为10px</div>
+        <div class="box">
+            <span style="font-weight: bolder;">由于隶属于同一个BFC，</span>当兄弟元素的外边距不一样时，将以最大的那个外边距为准</div>
+        <div class="newBFC">
+            <div class="box">创建了一个新的BFC，不再隶属于同一个BFC，边距不再堆叠</div>
+        </div>
+    </div>
+
+    <div class="container newBFC">
+        <h1>使用BFC来包含浮动</h1>
+        <div class="fl" style="width: 40px;height: 40px;margin-right:10px;background-color: #00ff00"></div>
+        <div class="fl" style="width: 40px;height: 40px;margin-left:10px;background-color: #00ffc8"></div>
+    </div>
+
+    <div class="container newBFC">
+        <h1>文字环绕</h1>
+        <div class="newBFC">
+            <div class="fl" style="background-color: #ff000082;width:80px;height:50px">半透明块</div>
+            <p style="background-color: #2d58e6;margin-top:10px;">
+                Quae hic ut ab perferendis sit quod architecto,dolor debitis quam rem provident aspernatur tempora expedita.Quae hic ut ab
+                perferendis sit quod architecto,dolor debitis quam rem provident aspernatur tempora expedita
+            </p>
+        </div>
+        <p>在BFC中，每个盒子的左外边框紧挨着左边框的包含块（从右到左的格式化时，则为右边框紧挨）。 即使在浮动里也是这样的（尽管一个盒子的边框会因为浮动而萎缩），除非这个盒子的内部创建了一个新的BFC（这种情况下,由于浮动，盒子本身将会变得更窄）</p>
+        <div class="newBFC">
+            <div class="fl" style="background-color: #ff000082;width:80px;height:50px">半透明块</div>
+            <p class="newBFC" style="background-color: #2d58e6;margin-top:10px;" title="p标签创建了新的BFC，不再紧贴包含块左侧">
+                Quae hic ut ab perferendis sit quod architecto,dolor debitis quam rem provident aspernatur tempora expedita.Quae hic ut ab
+                perferendis sit quod architecto,dolor debitis quam rem provident aspernatur tempora expedita
+            </p>
+        </div>
+        <p>p标签创建了新的BFC，不再紧贴包含块左侧</p>
+    </div>
+    <div class="container newBFC">
+        <h1>多列布局</h1>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
 </body>
 
