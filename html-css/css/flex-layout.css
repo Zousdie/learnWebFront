@@ -1,9 +1,236 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 * {
     padding: 0;
     margin: 0;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+header.f-header,
+footer.f-footer {
+    min-width: 100vw;
+    padding: 0 1rem;
+    background-color: #696666;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (min-width: 769px) {
+    header.f-header {
+        padding: 0 6vw;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    header.f-header {
+        padding: 0 18vw;
+    }
+}
+
+header.f-header {
+    justify-content: space-between;
+}
+
+header.f-header > * {
+    flex: 0 1 auto;
+}
+
+header.f-header .f-header-title {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+header.f-header a {
+    text-decoration: none;
+    color: #beb8b8;
+}
+
+header.f-header a:link,
+header.f-header a:visited {
+    color: #beb8b8;
+}
+
+header.f-header a:hover {
+    color: #ffffff;
+}
+
+header.f-header a:active {
+    color: #ffffff;
+}
+
+footer.f-footer {
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+footer.f-footer .f-footer-main {
+    display: inline-flex;
+}
+
+footer.f-footer .f-footer-second {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+footer.f-footer .f-footer-second .f-footer-sec-con {
+    padding: 0 0.5rem;
+}
+
+.f-header nav.f-header-nav button.f-header-nav-btn {
+    padding: 0 0.5rem;
+    border: none;
+    font-size: 1rem;
+    line-height: 3rem;
+    color: #beb8b8;
+    background-color: transparent;
+}
+
+.f-header nav.f-header-nav button.f-header-nav-btn:hover {
+    color: #ffffff;
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+}
+
+.f-header nav.f-header-nav button.f-header-nav-btn:active {
+    color: #ff00ff;
+    box-shadow: inset 0px 0px 15px 0px rgb(196, 210, 255);
+}
+
+@media only screen and (min-width: 769px) {
+    .f-header nav.f-header-nav button.f-header-nav-btn {
+        display: none;
+    }
+
+    .f-header nav.f-header-nav ul {
+        display: flex;
+        flex-flow: row wrap;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .f-header nav.f-header-nav ul {
+        display: none;
+        flex-flow: row wrap;
+        position: fixed;
+        left: 0;
+        right: 0;
+        background-color: #696666;
+        padding: 0 2rem;
+    }
+}
+
+.f-header nav.f-header-nav ul > li {
+    flex: 1 1 auto;
+    list-style: none;
+    text-align: center;
+    position: relative;
+}
+
+.f-header nav.f-header-nav ul > li > a {
+    display: inline-flex;
+    text-align: center;
+    line-height: 3rem;
+    padding: 0 0.5rem;
+}
+
+.f-header nav.f-header-nav ul > li:hover,
+.f-header nav.f-header-nav ul > li.active {
+    background-color: #2b2b2b;
+}
+
+.f-header nav.f-header-nav ul > li:hover::after,
+.f-header nav.f-header-nav ul > li.active::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    margin-left: -8px;
+    font-size: 0px;
+    line-height: 0px;
+    border-color: transparent transparent #fff;
+    border-style: none solid solid;
+    border-width: 0px 8px 8px;
+}
+
+.f-header nav.f-header-nav ul > li:hover > a {
+    color: #ffffff;
+}
+
+.f-body {
+    flex: 1 1 auto;
+}
+
+nav.f-nav {
+    position: fixed;
+}
+
+nav.f-nav > ul {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+nav.f-nav > ul > li {
+    flex: 1 1 auto;
+    list-style: none;
+    text-align: center;
+}
+
+nav.f-nav > ul > li > a {
+    display: inline-flex;
+    text-align: center;
+    line-height: 3rem;
+    padding: 0 0.5rem;
+    text-decoration: none;
+}
+
+main.f-main {
+    margin: auto;
+    padding: 2rem 1rem;
+}
+
+@media only screen and (min-width: 769px) {
+    main.f-main {
+        padding: 2rem 6vw;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    main.f-main {
+        padding: 2rem 18vw;
+    }
+}
+
+.input-group {
+    display: flex;
+    border: 1px solid #000000;
+    margin-bottom: 1rem;
+}
+
+.input-group-title {
+    padding: 2px 8px;
+    background-color: #c9c9c9;
+    border: none;
+}
+.input-group-field {
+    flex: 1;
+    border: none;
+}
+.input-group-btn {
+    border: none;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,86 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/flex-layout.css">
 </head>
+
 <body>
-    <header></header>
-    <div>
-        <nav></nav>
-        <main></main>
+    <header class="f-header">
+        <div class="f-header-title">
+            <a href="#">This is header!</a>
+        </div>
+        <nav class="f-header-nav">
+            <button class="f-header-nav-btn" id="headerNavBtn">MENU</button>
+            <ul>
+                <li>
+                    <a href="#">Action1</a>
+                </li>
+                <li>
+                    <a href="#">Action2</a>
+                </li>
+                <li>
+                    <a href="#">Action3</a>
+                </li>
+                <li>
+                    <a href="#">Action4</a>
+                </li>
+                <li>
+                    <a href="#">Action5</a>
+                </li>
+                <li>
+                    <a href="#">Action-loog</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="f-body">
+        <nav class="f-nav">
+            <ul>
+                <li>
+                    <a href="#">aside-nav-action-1</a>
+                </li>
+                <li>
+                    <a href="#">aside-nav-action-2</a>
+                </li>
+                <li>
+                    <a href="#">aside-nav-action-3</a>
+                </li>
+                <li>
+                    <a href="#">aside-nav-action-4</a>
+                </li>
+                <li>
+                    <a href="#">aside-nav-action-5</a>
+                </li>
+                <li>
+                    <a href="#">aside-nav-action-6</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="f-main">
+            <div class="input-group">
+                <span class="input-group-title">Amount</span>
+                <input type="text" class="input-group-field">
+                <button class="input-group-btn">GO</button>
+            </div>
+            <div class="input-group">
+                <span class="input-group-title">Amount</span>
+                <input type="text" class="input-group-field">
+                <button class="input-group-btn">GO</button>
+            </div>
+            <div class="input-group">
+                <span class="input-group-title">Amount</span>
+                <input type="text" class="input-group-field">
+                <button class="input-group-btn">GO</button>
+            </div>
+        </main>
     </div>
-    <footer></footer>
+    <footer class="f-footer">
+        <div class="f-footer-main">this is footer! this is footer! this is footer!</div>
+        <div class="f-footer-second">
+            <div class="f-footer-sec-con">Contact me:</div>
+            <div class="f-footer-sec-con">xxxx@outlook.com</div>
+        </div>
+    </footer>
+
 </body>
+<script src="./js/flexbox-layout.js"></script>
+
 </html>
