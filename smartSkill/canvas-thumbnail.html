@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas-thumbnail</title>
+</head>
+
+<body>
+    <div>
+        <form>
+            <label for="file-img">选个图片试试看</label>
+            <input type="file" name="file-img" id="file-img">
+        </form>
+        <img src="" alt="显示你的图片" id="show-img">
+        <img src="" alt="显示你的压缩" id="show-thumbnail">
+    </div>
+</body>
+<script>
+    (function () {
+        const fileInput = document.getElementById('file-img');
+        const showImg = document.getElementById('show-img');
+        const showThumbnail = document.getElementById('show-thumbnail');
+        // create a img
+        var img = new Image();
+        // create a canvas
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // add event listener file change
+        fileInput.addEventListener('change', function (e) {
+            var file = e.target.files.length ? e.target.files[0] : null;
+            var reader = new FileReader();
+            if (!file) return;
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                showImg.src = e.target.result;
+                canvas.width = 32;
+                canvas.height = 32;
+                ctx.drawImage(showImg, 0, 0, canvas.width, canvas.height);
+                showThumbnail.src = canvas.toDataURL('image/jpeg');
+            };
+        });
+    })();
+</script>
+
+</html>
