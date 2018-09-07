@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .con {
+            display: flex;
+        }
+
+        #x {
+            background-color: blue;
+            flex: 1;
+            position: relative;
+        }
+
+        #y {
+            height: 200px;
+            background-color: yellow;
+            flex: 0 0 200px;
+            transition: all 2s ease-in-out;
+        }
+
+        .resize-contract-con,
+        .resize-expend-con {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .resize-contract-con::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 200%;
+            width: 200%;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <div id="x">
+            <!-- resize -->
+            <div class="resize-contract-con">
+            </div>
+            <div class="resize-expend-con">
+                <div id="expend-trigger"></div>
+            </div>
+        </div>
+        <div id="y"></div>
+    </div>
+    <div>
+        <button id="lr">left-right</button>
+    </div>
+    <div>
+        <button id="ud">up-down</button>
+    </div>
+</body>
+<script>
+    const x = document.getElementById('x');
+    const rc = document.querySelector('.resize-contract-con');
+    const re = document.querySelector('.resize-expend-con');
+    const expendTrigger = document.getElementById('expend-trigger');
+
+    rc.scrollTo(x.offsetWidth + 17, x.offsetHeight + 17);
+    re.scrollTo(x.offsetWidth + 17, x.offsetHeight + 17);
+    expendTrigger.style.width = `${x.offsetWidth + 17}px`;
+    expendTrigger.style.height = `${x.offsetHeight + 17}px`;
+
+    document.getElementById('lr').addEventListener('click', function () {
+        const rightCon = document.getElementById('y');
+        var basis = getComputedStyle(rightCon).flexBasis;
+        if (basis === '200px') rightCon.style.flexBasis = '300px';
+        else rightCon.style.removeProperty('flex-basis');
+    });
+
+    document.getElementById('ud').addEventListener('click', function () {
+        const rightCon = document.getElementById('y');
+        var height = getComputedStyle(rightCon).height;
+        if (height === '200px') rightCon.style.height = '300px';
+        else rightCon.style.removeProperty('height');
+    });
+
+    const scrollHandle = function () {
+        rc.scrollTo(x.offsetWidth + 17, x.offsetHeight + 17);
+        re.scrollTo(x.offsetWidth + 17, x.offsetHeight + 17);
+        expendTrigger.style.width = `${x.offsetWidth + 17}px`;
+        expendTrigger.style.height = `${x.offsetHeight + 17}px`;
+    };
+    rc.addEventListener('scroll', scrollHandle);
+    re.addEventListener('scroll', scrollHandle);
+
+    var mo = new MutationObserver(function (mutations, observer) {
+        console.log(`width: ${x.offsetWidth}, height: ${x.offsetHeight}`);
+    });
+
+    mo.observe(document.getElementById('x'), {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true,
+        attributeOldValue: true,
+    });
+</script>
+
+</html>
