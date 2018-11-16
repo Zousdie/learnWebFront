@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>canvas-thumbnail</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div>
-        <form>
-            <label for="file-img">选个图片试试看</label>
-            <input type="file" name="file-img" id="file-img" accept="image/jpeg,image/png">
-        </form>
-        <div>
-            <img alt="显示你的图片" id="show-img">
-            <img alt="显示你的压缩" id="show-thumbnail">
-        </div>
+      <form>
+        <label for="file-img">选个图片试试看</label>
+        <input
+          type="file"
+          name="file-img"
+          id="file-img"
+          accept="image/jpeg,image/png"
+        />
+      </form>
+      <div>
+        <img alt="显示你的图片" id="show-img" />
+        <img alt="显示你的压缩" id="show-thumbnail" />
+      </div>
     </div>
-</body>
-<script>
-    (function () {
-        const fileInput = document.getElementById('file-img');
-        const showImg = document.getElementById('show-img');
-        const showThumbnail = document.getElementById('show-thumbnail');
+  </body>
+  <script>
+    (function() {
+      const fileInput = document.getElementById("file-img");
+      const showImg = document.getElementById("show-img");
+      const showThumbnail = document.getElementById("show-thumbnail");
 
-        // add event listener for file change
-        fileInput.addEventListener('change', function (e) {
-            const file = e.target.files.length ? e.target.files[0] : null;
-            if (file) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (e) => {
-                    showImg.src = e.target.result;
-                    const img = new Image();
-                    img.src = e.target.result;
-                    img.addEventListener('load', function (e) {
-                        // create a canvas
-                        const canvas = document.createElement('canvas');
-                        const ctx = canvas.getContext('2d');
-                        canvas.width = img.width * 0.4;
-                        canvas.height = img.height * 0.4;
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        showThumbnail.src = canvas.toDataURL('image/jpeg');
-                    });
-                };
-            }
-        });
+      // add event listener for file change
+      fileInput.addEventListener("change", function(e) {
+        const file = e.target.files.length ? e.target.files[0] : null;
+        if (file) {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = e => {
+            showImg.src = e.target.result;
+            const img = new Image();
+            img.src = e.target.result;
+            img.addEventListener("load", function(e) {
+              // create a canvas
+              const canvas = document.createElement("canvas");
+              const ctx = canvas.getContext("2d");
+              canvas.width = img.width * 0.4;
+              canvas.height = img.height * 0.4;
+              ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+              const picDataBase64 = canvas.toDataURL("image/jpeg");
+              showThumbnail.src = picDataBase64;
+
+              const picData = canvas.toBlob(blob => {
+                // download
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = "1.jpg";
+                a.click();
+                URL.revokeObjectURL(url);
+              }, "image/jpeg");
+            });
+          };
+        }
+      });
     })();
-</script>
-
+  </script>
 </html>
