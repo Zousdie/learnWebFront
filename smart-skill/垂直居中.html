@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 600px;
+            height: 300px;
+            background: greenyellow;
+        }
+
+        .container>div {
+            width: 200px;
+            height: 120px;
+            background: wheat
+        }
+
+        .inline-container {
+            background: burlywood;
+        }
+
+        .icon {
+            height: 50px;
+            width: 50px;
+            background: green;
+        }
+
+        .inline-container>div:not(.icon) {
+            max-width: 500px;
+            padding: 5px;
+        }
+
+        .container+.container,
+        .inline-container+.inline-container {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>块级元素</h1>
+    <div class="container" style="position:relative">
+        <div style="position:absolute; top:50%; left:0; right:0; margin:auto; transform:translateY(-50%)">
+            <h2>垂直居中1</h2>
+            <p>绝对定位 + transform</p>
+        </div>
+    </div>
+    <div class="container" style="display:table;">
+        <div style="display:table-cell; vertical-align:middle; text-align:center;">
+            <h2>垂直居中2</h2>
+            <p>转化为table</p>
+        </div>
+    </div>
+    <div class="container" style="position:relative;">
+        <div style="position:absolute; top:0; right:0; bottom:0; left:0; margin:auto;">
+            <h2>垂直居中3</h2>
+            <p>绝对定位拉伸 + margin auto</p>
+            <p>但需要指定高度，无法自适应高度</p>
+        </div>
+    </div>
+
+    <h1>内联元素</h1>
+    <div style="display:flex" class="inline-container">
+        <div class="icon">ICON</div>
+        <div>
+            我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~
+        </div>
+    </div>
+    <div style="display:flex" class="inline-container">
+        <div class="icon">ICON</div>
+        <div>
+            我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~
+            我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~
+            我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~
+            我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~
+            我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~我是很多文字，让我居中吧~~~
+        </div>
+    </div>
+</body>
+
+</html>
