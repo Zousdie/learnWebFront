@@ -21,7 +21,23 @@
             width: 200px;
             height: 200px;
             position: absolute;
+            top: 30%;
+            left: 30%;
             cursor: move;
+            color: #fff;
+            text-align: center;
+        }
+
+        .drop>span {
+            user-select: none;
+        }
+
+        .drop>span[name=position] {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
         }
 
     </style>
@@ -29,7 +45,10 @@
 
 <body>
     <div class="wrapper">
-        <div class="drop" id="drop"></div>
+        <div class="drop" id="drop">
+            <span name="state"></span>
+            <span name="position"></span>
+        </div>
     </div>
 </body>
 
@@ -37,23 +56,52 @@
 
 <script>
     const drop = document.getElementById('drop');
+    const state = drop.querySelector('span[name=state]');
+    const position = drop.querySelector('span[name=position]');
 
-    drop.addEventListener('mousedown', (e) => {
-        console.log('start');
+    const data = {};
+    Object.defineProperty(data, 'state', {
+        set(value) {
+            state.innerText = value;
+        }
+    });
+    Object.defineProperty(data, 'position', {
+        set(value) {
+            position.innerText = value;
+        }
+    })
+    data.state = 'drop!';
+
+    const h = (e) => {
+        data.state = 'start';
+        e.target.startPosition = {
+            x: drop.offsetLeft,
+            y: drop.offsetTop
+        };
         e.target.mousePosition = {
-            x: e.pageX - drop.offsetLeft,
-            y: e.pageY - drop.offsetTop
+            x: e.touches ? e.touches[0].pageX : e.pageX,
+            y: e.touches ? e.touches[0].pageY : e.pageY
         };
         e.target.handleMove = (e) => {
-            drop.style.top = `${e.pageY - drop.mousePosition.y}px`;
-            drop.style.left = `${e.pageX - drop.mousePosition.x}px`;
+            let x = e.touches ? e.touches[0].pageX : e.pageX;
+            let y = e.touches ? e.touches[0].pageY : e.pageY;
+            drop.style.top = `${y - drop.mousePosition.y + drop.startPosition.y}px`;
+            drop.style.left = `${x - drop.mousePosition.x + drop.startPosition.x}px`;
+            data.position = `{x:${drop.style.left} y:${drop.style.top}}`;
         };
         e.target.handleUp = (e) => {
             document.removeEventListener('mousemove', drop.handleMove);
             document.removeEventListener('mouseup', drop.handleUp);
-            console.log('end');
+            document.removeEventListener('touchmove', drop.handleMove);
+            document.removeEventListener('touchend', drop.handleUp);
+            data.state = 'end';
+            data.position = '';
         };
         document.addEventListener('mousemove', e.target.handleMove);
         document.addEventListener('mouseup', e.target.handleUp);
-    });
+        document.addEventListener('touchmove', e.target.handleMove);
+        document.addEventListener('touchend', e.target.handleUp);
+    };
+    drop.addEventListener('mousedown', h);
+    drop.addEventListener('touchstart', h);
 </script>
