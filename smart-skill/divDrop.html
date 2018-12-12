@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: bisque;
+        }
+
+        .drop {
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            cursor: move;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="drop" id="drop"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const drop = document.getElementById('drop');
+
+    drop.addEventListener('mousedown', (e) => {
+        console.log('start');
+        e.target.mousePosition = {
+            x: e.pageX - drop.offsetLeft,
+            y: e.pageY - drop.offsetTop
+        };
+        e.target.handleMove = (e) => {
+            drop.style.top = `${e.pageY - drop.mousePosition.y}px`;
+            drop.style.left = `${e.pageX - drop.mousePosition.x}px`;
+        };
+        e.target.handleUp = (e) => {
+            document.removeEventListener('mousemove', drop.handleMove);
+            document.removeEventListener('mouseup', drop.handleUp);
+            console.log('end');
+        };
+        document.addEventListener('mousemove', e.target.handleMove);
+        document.addEventListener('mouseup', e.target.handleUp);
+    });
+</script>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        html,
+        body {
+            font-size: 12px;
+            font-family: "微软雅黑";
+            width: 100%;
+            height: 100%;
+        }
+
+        .main {
+            text-align: right;
+            line-height: 20px;
+            margin-right: 40px;
+            color: red;
+        }
+
+        div.mask {
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            opacity: 0.8;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: none;
+            z-index: 10;
+        }
+
+        .login {
+            display: none;
+            position: absolute;
+            background: white;
+            top: 0px;
+            left: 0px;
+            z-index: 11;
+            width: 391px;
+            border: 1px solid red;
+        }
+
+        .login a {
+            text-decoration: none;
+        }
+
+        .login .title {
+            height: 48px;
+            line-height: 48px;
+            color: black;
+            font-size: 16px;
+            border-bottom: 1px solid red;
+            background: #f5f5f5;
+            padding-left: 20px;
+            cursor: move;
+        }
+
+        .login .close {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: url(img/close_def.png) no-repeat center center;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+
+        .login .close:hover {
+            background: url(img/close_hov.png) no-repeat center center;
+        }
+
+        .login .content {
+            padding: 10px 20px;
+        }
+
+        .login .content div {
+            padding-top: 15px;
+        }
+
+        .login .content div input {
+            width: 100%;
+            height: 40px;
+            border: 1px solid red;
+            font-size: 16px;
+            color: black;
+            text-indent: 35px;
+        }
+
+        .login .content div input[type='text'] {
+            background: url(img/input_username.png) no-repeat 3px 0px;
+        }
+
+        .login .content div input[type='password'] {
+            background: url(img/input_password.png) no-repeat 2px 0px;
+        }
+
+        .login .content div.now {
+            height: 40px;
+            padding: 0px;
+            line-height: 40px;
+            text-align: right;
+        }
+
+        .login .content div.sbm {
+            height: 50px;
+            padding: 0px;
+        }
+
+        .login .content div.sbm input {
+            background: #3b7ae3;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            border-radius: 5px;
+            display: block;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            //获取函数对象
+            function G(id) {
+                return document.getElementById(id);
+            }
+
+            function autocenter(el) {
+                var bodyW = document.documentElement.clientWidth;
+                var bodyH = document.documentElement.clientHeight;
+                var elW = el.offsetWidth;
+                var elH = el.offsetHeight;
+                el.style.left = (bodyW - elW) / 2 + "px";
+                el.style.top = (bodyH - elH) / 2 + "px";
+            }
+            var mouseoffsetX = 0;
+            var mouseoffsetY = 0;
+            var isdrag = false;
+            G('title').onmousedown = function (e) {
+                var e = e || window.event;
+                mouseoffsetX = e.pageX - G('login').offsetLeft;
+                mouseoffsetY = e.pageY - G('login').offsetTop;
+                isdrag = true; //可拖动标志位
+            };
+            document.onmousemove = function () {
+                var e = e || window.event;
+                var mouseX = e.pageX; //鼠标当前位置
+                var mouseY = e.pageY;
+                var moveX = 0; //鼠标新位置
+                var moveY = 0;
+                if (isdrag == true) {
+                    moveX = mouseX - mouseoffsetX;
+                    moveY = mouseY - mouseoffsetY;
+                    //范围限定 moveX>0&&moveX<(页面宽度-浮层宽度)
+                    //范围限定 moveY>0&&moveX<(页面高度-浮层高度)
+                    var bodyW = document.documentElement.clientWidth;
+                    var bodyH = document.documentElement.clientHeight;
+                    var elW = G('login').offsetWidth;
+                    var elH = G('login').offsetHeight;
+                    var maxX = bodyW - elW; //left最大值
+                    var maxY = bodyH - elH; //top最大值
+                    moveX = Math.min(maxX, Math.max(0, moveX)); //这两句是精华
+                    moveY = Math.min(maxY, Math.max(0, moveY));
+                    G('login').style.left = moveX + "px";
+                    G('login').style.top = moveY + "px";
+                }
+
+            }
+            document.onmouseup = function () {
+                isdrag = false;
+            }
+
+            G('lg').onclick = function () {
+                G('mask').style.display = "block";
+                G('login').style.display = "block";
+                autocenter(G('login'));
+            }
+            G('close').onclick = function () {
+                G('mask').style.display = "none";
+                G('login').style.display = "none";
+
+            }
+            window.onresize = function () {
+                autocenter(G('login'));
+            }
+        }
+    </script>
+</head>
+
+<body onselectstart="return false">
+    <div class="main">
+        <a href="##" id="lg">登录</a>
+    </div>
+    <div class="mask" id="mask"></div>
+    <div id="login" class="login">
+        <div class="title" id="title">
+            <span>立即登陆</span>
+            <a class="close" id="close"></a>
+        </div>
+        <div class="content">
+            <div class="user_name">
+                <input type="text" value="" placeholder="注册用户名" />
+            </div>
+            <div class="pwd">
+                <input type="password" value="" placeholder="登陆密码" />
+            </div>
+            <div class="now">
+                <a href="#">忘记密码</a>
+            </div>
+            <div class="sbm">
+                <input type="submit" value="登陆" />
+            </div>
+            <div class="now">
+                <a href="#">立即注册</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
