@@ -10,19 +10,22 @@
         .wrapper {
             position: fixed;
             top: 0;
+            right: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            margin: auto;
+            width: 1000px;
+            height: 1000px;
             background-color: bisque;
         }
 
         .drop {
             background-color: blue;
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            height: 160px;
             position: absolute;
-            top: 30%;
-            left: 30%;
+            top: 0;
+            left: 0;
             cursor: move;
             color: #fff;
             text-align: center;
@@ -74,22 +77,30 @@
 
     const h = (e) => {
         data.state = 'start';
-        e.target.startPosition = {
+        drop.startPosition = {
             x: drop.offsetLeft,
             y: drop.offsetTop
         };
-        e.target.mousePosition = {
+        drop.mousePosition = {
             x: e.touches ? e.touches[0].pageX : e.pageX,
             y: e.touches ? e.touches[0].pageY : e.pageY
         };
-        e.target.handleMove = (e) => {
+        drop.handleMove = (e) => {
             let x = e.touches ? e.touches[0].pageX : e.pageX;
             let y = e.touches ? e.touches[0].pageY : e.pageY;
-            drop.style.top = `${y - drop.mousePosition.y + drop.startPosition.y}px`;
-            drop.style.left = `${x - drop.mousePosition.x + drop.startPosition.x}px`;
+            y = y - drop.mousePosition.y + drop.startPosition.y;
+            x = x - drop.mousePosition.x + drop.startPosition.x;
+
+            if (x < 0) x = 0;
+            if (y < 0) y = 0;
+            if (x > drop.offsetParent.offsetWidth - drop.offsetWidth) x = drop.offsetParent.offsetWidth - drop.offsetWidth;
+            if (y > drop.offsetParent.offsetHeight - drop.offsetHeight) y = drop.offsetParent.offsetHeight - drop.offsetHeight;
+
             data.position = `{x:${drop.style.left} y:${drop.style.top}}`;
+            drop.style.top = `${y}px`;
+            drop.style.left = `${x}px`;
         };
-        e.target.handleUp = (e) => {
+        drop.handleUp = (e) => {
             document.removeEventListener('mousemove', drop.handleMove);
             document.removeEventListener('mouseup', drop.handleUp);
             document.removeEventListener('touchmove', drop.handleMove);
@@ -97,10 +108,10 @@
             data.state = 'end';
             data.position = '';
         };
-        document.addEventListener('mousemove', e.target.handleMove);
-        document.addEventListener('mouseup', e.target.handleUp);
-        document.addEventListener('touchmove', e.target.handleMove);
-        document.addEventListener('touchend', e.target.handleUp);
+        document.addEventListener('mousemove', drop.handleMove);
+        document.addEventListener('mouseup', drop.handleUp);
+        document.addEventListener('touchmove', drop.handleMove);
+        document.addEventListener('touchend', drop.handleUp);
     };
     drop.addEventListener('mousedown', h);
     drop.addEventListener('touchstart', h);
